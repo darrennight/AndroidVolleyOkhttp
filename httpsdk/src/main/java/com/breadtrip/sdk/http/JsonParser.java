@@ -1,12 +1,11 @@
 package com.breadtrip.sdk.http;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import com.breadtrio.sdk.common.utils.LogUtils;
-import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.lang.reflect.Type;
 
 /**
  * 数据解析
@@ -70,13 +69,13 @@ public class JsonParser {
             // 手动解析
             return parser.doParse(jsonObj);
         } else if (parseTag instanceof Class) {
-            // Gson 解析类
+            // 自动解析类
             Class c = (Class) parseTag;
-            return new Gson().fromJson(jsonObj.toString(), c);
-        } else if (parseTag instanceof Type) {
-            // Gson 解析type
-            Type type = (Type) parseTag;
-            return new Gson().fromJson(jsonObj.toString(), type);
+            return JSON.parseObject(jsonObj.toString(), c);
+        } else if (parseTag instanceof TypeReference) {
+            // 自动解析type
+            TypeReference type = (TypeReference) parseTag;
+            return JSON.parseObject(jsonObj.toString(), type);
         } else {
             if (LogUtils.isDebugable()) {
                 // 调试状态，抛出异常, 解析TAG类型错误

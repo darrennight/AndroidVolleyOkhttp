@@ -72,15 +72,13 @@ public class BaseRequestParams {
      */
     private Object tag;
 
-    public BaseRequestParams(String url, Object parseTag) {
+    public BaseRequestParams(String url) {
         this.url = url;
-        this.parseTag = parseTag;
         this.method = Request.Method.GET;
     }
 
-    public BaseRequestParams(String url, Object parseTag, int method) {
+    public BaseRequestParams(String url, int method) {
         this.url = url;
-        this.parseTag = parseTag;
         this.method = method;
     }
 
@@ -106,6 +104,10 @@ public class BaseRequestParams {
 
     public Object getParseTag() {
         return parseTag;
+    }
+
+    public void setParseTag(Object parseTag) {
+        this.parseTag = parseTag;
     }
 
     public boolean isSecret() {

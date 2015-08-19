@@ -7,6 +7,8 @@ import android.text.TextUtils;
 
 import com.breadtrio.sdk.common.utils.DeviceUtils;
 import com.breadtrio.sdk.common.utils.PackageUtils;
+import com.breadtrip.config.PathConfig;
+import com.breadtrip.sdk.http.HttpManager;
 
 /**
  * @author jiwei@breadtrip.com
@@ -36,6 +38,9 @@ public class BreadTripApplication extends Application{
         String processName = DeviceUtils.getProcessName(this, Process.myPid());
         if (!TextUtils.isEmpty(processName) && processName.equals(PackageUtils.getPackageName(this))) {
             // 面包主task
+
+            // 初始化http请求队列
+            HttpManager.getInstance().initiate(getApplicationContext(), PathConfig.HTTP_CACHE);
         } else {
             // 其他task，eg：remote service；地图进程；统计进程等。
         }

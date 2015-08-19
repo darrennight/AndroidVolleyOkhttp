@@ -1,8 +1,10 @@
 package com.breadtrip.Http;
 
 
+import com.alibaba.fastjson.TypeReference;
 import com.android.volley.Request;
 import com.breadtrip.sdk.http.BaseRequestParams;
+import com.breadtrip.sdk.http.IParser;
 
 import java.util.Map;
 
@@ -16,13 +18,13 @@ import java.util.Map;
  */
 public class RequestParams extends BaseRequestParams {
 
-    public RequestParams(String url, Object parseTag) {
-        super(url, parseTag);
+    public RequestParams(String url) {
+        super(url);
         init();
     }
 
-    public RequestParams(String url, Object parseTag, int method) {
-        super(url, parseTag, method);
+    public RequestParams(String url, int method) {
+        super(url, method);
         init();
     }
 
@@ -51,12 +53,12 @@ public class RequestParams extends BaseRequestParams {
 
         private RequestParams params;
 
-        public Builder(String url, Object parseTag) {
-            this(url, parseTag, Request.Method.GET);
+        public Builder(String url) {
+            this(url, Request.Method.GET);
         }
 
-        public Builder(String url, Object parseTag, int method) {
-            params = new RequestParams(url, parseTag, method);
+        public Builder(String url, int method) {
+            params = new RequestParams(url, method);
         }
 
         public Builder setMethod(int method) {
@@ -166,6 +168,36 @@ public class RequestParams extends BaseRequestParams {
 
         public Builder setNeedRetry(boolean isNeedRetry) {
             params.setNeedRetry(isNeedRetry);
+            return this;
+        }
+
+        /**
+         * 自动解析
+         * @param parseClass 解析class
+         * @return
+         */
+        public Builder setParseTag(Class parseClass) {
+            params.setParseTag(parseClass);
+            return this;
+        }
+
+        /**
+         * 自动解析
+         * @param parseType 解析type
+         * @return
+         */
+        public Builder setParseTag(TypeReference parseType) {
+            params.setParseTag(parseType);
+            return this;
+        }
+
+        /**
+         * 手动解析
+         * @param parseManual 手动解析实现类
+         * @return
+         */
+        public Builder setParseTag(IParser parseManual) {
+            params.setParseTag(parseManual);
             return this;
         }
 

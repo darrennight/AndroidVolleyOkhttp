@@ -30,6 +30,15 @@ import java.util.Map;
  */
 public class HttpManager {
 
+    /** The default socket timeout in milliseconds */
+    public static final int DEFAULT_TIMEOUT_MS = 10000;
+
+    /** The default number of retries */
+    public static final int DEFAULT_MAX_RETRIES = 1;
+
+    /** The default backoff multiplier */
+    public static final float DEFAULT_BACKOFF_MULT = 1f;
+
     private static HttpManager instance;
 
     private RequestQueue mRequestQueue;
@@ -55,9 +64,13 @@ public class HttpManager {
      * 获取单例
      * @return HttpManager
      */
-    public synchronized static HttpManager getInstance() {
+    public static HttpManager getInstance() {
         if (instance == null) {
-            instance = new HttpManager();
+            synchronized (HttpManager.class) {
+                if (instance == null) {
+                    instance = new HttpManager();
+                }
+            }
         }
         return instance;
     }
@@ -110,7 +123,7 @@ public class HttpManager {
         if (!requestParams.isNeedRetry()) {
             request.setRetryPolicy(new DefaultRetryPolicy(0, 0, 0));
         } else {
-            request.setRetryPolicy(new DefaultRetryPolicy(10000, 1, 1));
+            request.setRetryPolicy(new DefaultRetryPolicy(DEFAULT_TIMEOUT_MS, DEFAULT_MAX_RETRIES, DEFAULT_BACKOFF_MULT));
         }
 
         if (requestParams.getTag() != null) {

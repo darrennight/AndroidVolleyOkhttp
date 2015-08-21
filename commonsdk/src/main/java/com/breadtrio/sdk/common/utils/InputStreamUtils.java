@@ -8,7 +8,7 @@ import java.io.InputStream;
  * @version V1.0
  * @Project: BreadTrip
  * @Package com.breadtrio.sdk.common.utils
- * @Description: ${TODO}
+ * @Description: 流管理类
  * @date 15/8/17 下午6:11
  */
 public class InputStreamUtils {
@@ -21,7 +21,7 @@ public class InputStreamUtils {
      */
     public static byte[] readFileToByte(InputStream inStream) throws Exception {
         byte[] buffer = new byte[1024];
-        int len = -1;
+        int len;
         ByteArrayOutputStream outStream = new ByteArrayOutputStream();
         while ((len = inStream.read(buffer)) != -1) {
             outStream.write(buffer, 0, len);

@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         testVolleyImage();
     }
 
+
     private void testVolleyImage() {
         ImageVolleyManager imageVolleyManager = ImageVolleyManager.getInstance();
         imageVolleyManager.initiate(this, PathConfig.IMAGE_CACHE);
@@ -95,13 +96,13 @@ public class MainActivity extends AppCompatActivity {
         String[] path = new String[2];
         //指定获取的列
         String columns[] = new String[]{
-                Media.DATA,Media._ID,Media.TITLE,Media.DISPLAY_NAME
+                Media.DATA, Media._ID, Media.TITLE, Media.DISPLAY_NAME
         };
         Cursor cursor = this.getContentResolver().query(Media.EXTERNAL_CONTENT_URI, columns, null, null, null);
         int photoIndex = cursor.getColumnIndexOrThrow(Media.DATA);
         int nameIndex = cursor.getColumnIndexOrThrow(Media.DISPLAY_NAME);
 
-        if(cursor.moveToFirst()) {
+        if (cursor.moveToFirst()) {
             path[0] = cursor.getString(photoIndex);
 
             if (cursor.moveToNext()) {
@@ -111,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
         return path;
     }
 
-    static class Demo{
+    static class Demo {
         public String getData() {
             return data;
         }
@@ -120,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
             this.data = data;
         }
 
-        @JSONField(name="default-data")
+        @JSONField(name = "default-data")
         private String data;
     }
 

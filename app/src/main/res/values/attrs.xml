@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="AbsFrameLayout">
+        <attr name="loadingLayout" format="reference"/>
+        <attr name="emptyLayout" format="reference"/>
+        <attr name="errorLayout" format="reference"/>
+        <attr name="dataLayout" format="reference"/>
+    </declare-styleable>
+</resources>

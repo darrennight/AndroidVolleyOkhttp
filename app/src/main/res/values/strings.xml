@@ -1,6 +1,9 @@
 <resources>
-    <string name="app_name">BreadTrip</string>
+    <string name="app_name">面包旅行</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="empty_message">数据为空</string>
+    <string name="error_message">加载错误</string>
+    <string name="reload">重新加载</string>
+    <string name="loading">加载中</string>
+
 </resources>

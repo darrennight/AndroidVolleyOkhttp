@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tv_empty_message"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:drawablePadding="17dp"
+    android:drawableTop="@drawable/test"
+    android:text="@string/empty_message"
+    android:gravity="center"
+    android:padding="10dp"
+    android:textSize="14sp"/>

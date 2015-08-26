@@ -1,11 +1,13 @@
 package com.breadtrip.ui.activity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore.Images.Media;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,6 +33,11 @@ public class MainActivity extends AppCompatActivity {
         testHttp();
 
         testVolleyImage();
+    }
+
+    public void testHome(View view) {
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
     }
 
 

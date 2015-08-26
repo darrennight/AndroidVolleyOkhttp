@@ -40,6 +40,7 @@ public class RequestParams extends BaseRequestParams {
         if (entities != null && entities.size() > 0) {
             addEntityAll(entities);
         }
+
     }
 
     /**

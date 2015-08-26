@@ -11,7 +11,7 @@ import android.util.AttributeSet;
  * @Description: List的四层布局
  * @date 15/8/21 下午5:49
  */
-public class ListFrameLayout extends AbsFrameLayout{
+public class ListFrameLayout extends BaseFrameLayout {
     public ListFrameLayout(Context context) {
         super(context);
     }

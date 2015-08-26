@@ -24,7 +24,7 @@ import java.lang.annotation.RetentionPolicy;
  * @Description: 抽象4层基本布局
  * @date 15/8/19 下午7:58
  */
-public class AbsFrameLayout extends FrameLayout {
+public class BaseFrameLayout extends FrameLayout {
 
     /**
      * 注解方式int to enum
@@ -71,28 +71,28 @@ public class AbsFrameLayout extends FrameLayout {
 
     private int mLoadingLayoutId, mEmptyLayoutId, mErrorLayoutId, mDataLayoutId;
 
-    public AbsFrameLayout(Context context) {
+    public BaseFrameLayout(Context context) {
         super(context);
         init(context, null);
     }
 
-    public AbsFrameLayout(Context context, AttributeSet attrs) {
+    public BaseFrameLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs);
     }
 
-    public AbsFrameLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+    public BaseFrameLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context, attrs);
     }
 
     private void readAttribute(Context context, AttributeSet attrs) {
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.AbsFrameLayout);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.BaseFrameLayout);
         try {
-            mLoadingLayoutId = a.getResourceId(R.styleable.AbsFrameLayout_loadingLayout, 0);
-            mDataLayoutId = a.getResourceId(R.styleable.AbsFrameLayout_dataLayout, 0);
-            mEmptyLayoutId = a.getResourceId(R.styleable.AbsFrameLayout_emptyLayout, 0);
-            mErrorLayoutId = a.getResourceId(R.styleable.AbsFrameLayout_errorLayout, 0);
+            mLoadingLayoutId = a.getResourceId(R.styleable.BaseFrameLayout_loadingLayout, 0);
+            mDataLayoutId = a.getResourceId(R.styleable.BaseFrameLayout_dataLayout, 0);
+            mEmptyLayoutId = a.getResourceId(R.styleable.BaseFrameLayout_emptyLayout, 0);
+            mErrorLayoutId = a.getResourceId(R.styleable.BaseFrameLayout_errorLayout, 0);
         } finally {
             a.recycle();
         }

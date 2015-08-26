@@ -71,4 +71,11 @@
             android:background="#aaa"
             android:scaleType="centerInside"/>
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="testHome"
+        android:text="home"/>
 </LinearLayout>

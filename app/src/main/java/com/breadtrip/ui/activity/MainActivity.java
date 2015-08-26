@@ -1,4 +1,4 @@
-package com.breadtrip.ui;
+package com.breadtrip.ui.activity;
 
 import android.database.Cursor;
 import android.graphics.Bitmap;

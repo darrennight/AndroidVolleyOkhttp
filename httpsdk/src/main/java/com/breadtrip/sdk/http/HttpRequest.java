@@ -68,22 +68,31 @@ public class HttpRequest<T> extends Request<T> {
             return Response.success(null, null);
         }
 
-        String parsed;
+        String jsonString;
         try {
-            parsed = new String(response.data, HttpHeaderParser.parseCharset(response.headers));
+            jsonString = new String(response.data, HttpHeaderParser.parseCharset(response.headers));
         } catch (UnsupportedEncodingException e) {
-            parsed = new String(response.data);
+            jsonString = new String(response.data);
         }
 
-        LogUtils.d("HttpTask", parsed);
+        IPreProcessor preProcessor = requestParams.getPreProcessor();
+        if (preProcessor != null) {
+            jsonString = preProcessor.doPreProcess(jsonString);
+        }
 
-        Object object = JsonParser.parseJson(requestParams.getParseTag(), parsed);
+        LogUtils.d("HttpTask", jsonString);
+
+        Object object = JsonParser.parseJson(requestParams.getParseTag(), jsonString);
         if (object != null) {
             JsonBaseModel result = (JsonBaseModel) object;
             String code = result.getStatus();
             Object data = result.getData();
             if (!TextUtils.isEmpty(code) && HttpConfig.SUCCESS_CODE.equals(code) && data != null) {
                 try {
+                    IPostProcessor postProcessor = requestParams.getPostProcessor();
+                    if (postProcessor != null) {
+                        data = postProcessor.doPostProcess(data);
+                    }
                     @SuppressWarnings("unchecked")
                     T t = (T) data;
                     return Response.success(t, HttpHeaderParser.parseCacheHeaders(response));

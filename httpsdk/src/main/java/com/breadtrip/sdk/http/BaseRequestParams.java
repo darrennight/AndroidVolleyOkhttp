@@ -72,6 +72,16 @@ public class BaseRequestParams {
      */
     private Object tag;
 
+    /**
+     * json前处理器
+     */
+    private IPreProcessor mPreProcessor;
+
+    /**
+     * json解析后处理器
+     */
+    private IPostProcessor mPostProcessor;
+
     public BaseRequestParams(String url) {
         this.url = url;
         this.method = Request.Method.GET;
@@ -126,6 +136,22 @@ public class BaseRequestParams {
         this.isNeedRetry = isNeedRetry;
     }
 
+    public IPostProcessor getPostProcessor() {
+        return mPostProcessor;
+    }
+
+    public void setPostProcessor(IPostProcessor postProcessor) {
+        mPostProcessor = postProcessor;
+    }
+
+    public IPreProcessor getPreProcessor() {
+        return mPreProcessor;
+    }
+
+    public void setPreProcessor(IPreProcessor preProcessor) {
+        mPreProcessor = preProcessor;
+    }
+
     public ConcurrentHashMap<String, String> getHeaderParams() {
         return headerParams;
     }
@@ -165,7 +191,7 @@ public class BaseRequestParams {
 
     public void addQueryParam(String key, String value) {
         if (queryParams == null) {
-            queryParams = new ConcurrentHashMap<String, String>();
+            queryParams = new ConcurrentHashMap<>();
         }
 
         queryParams.put(key, value);
@@ -207,14 +233,14 @@ public class BaseRequestParams {
 
     public void addHeaderParam(String key, String value) {
         if (headerParams == null) {
-            headerParams = new ConcurrentHashMap<String, String>();
+            headerParams = new ConcurrentHashMap<>();
         }
         headerParams.put(key, value);
     }
 
     public void addHeaderAll(Map<String, String> values) {
         if (headerParams == null) {
-            headerParams = new ConcurrentHashMap<String, String>();
+            headerParams = new ConcurrentHashMap<>();
         }
         headerParams.putAll(values);
     }
@@ -255,14 +281,14 @@ public class BaseRequestParams {
 
     public void addEntityStringParam(String key, String value) {
         if (entityStringParams == null) {
-            entityStringParams = new ConcurrentHashMap<String, String>();
+            entityStringParams = new ConcurrentHashMap<>();
         }
         entityStringParams.put(key, value);
     }
 
     public void addEntityAll(Map<String, String> values) {
         if (entityStringParams == null) {
-            entityStringParams = new ConcurrentHashMap<String, String>();
+            entityStringParams = new ConcurrentHashMap<>();
         }
         entityStringParams.putAll(values);
     }
@@ -278,7 +304,7 @@ public class BaseRequestParams {
 
     public void addFileParams(String key, String filePath) {
         if (fileParams == null) {
-            fileParams = new ConcurrentHashMap<String, File>();
+            fileParams = new ConcurrentHashMap<>();
         }
         File file = new File(filePath);
         if (file.exists()) {

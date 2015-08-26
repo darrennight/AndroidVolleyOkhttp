@@ -88,7 +88,6 @@ public class HttpManager {
     public <T> void startRequest(final BaseRequestParams requestParams, final HttpResponseListener<T> responseListener) {
 
         Request<T> request = makeRequest(requestParams, responseListener);
-
         if (mRequestQueue != null) {
             mRequestQueue.add(request);
         } else {
